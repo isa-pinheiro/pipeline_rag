@@ -7,11 +7,10 @@ Este documento descreve a arquitetura do pipeline de RAG construído para o desa
 O pipeline é composto por três blocos principais, conforme definido no desafio: **1. Extração de Conteúdo**, **2. Indexação** e **3. Recuperação e Geração**. Ele processa documentos de entrada, os transforma em uma base de conhecimento vetorial e utiliza um LLM para responder a perguntas com base no conteúdo recuperado.
 
 ## Diagrama da Arquitetura
-
-  [Documentos de Entrada]
-  (PDF com texto, Imagem)
-           |
-           v
+[Documentos de Entrada]
+(PDF com texto, Imagem)
+        |
+        v
 +------------------------------------+
 | 1. Extração de Conteúdo (Ingestão) |
 |------------------------------------|
@@ -20,29 +19,29 @@ O pipeline é composto por três blocos principais, conforme definido no desafio
 |   - Se Imagem: Pipeline de OCR     |
 |     (Pytesseract + Pós-process.)   |
 +------------------------------------+
-|
-v
+        |
+        v
 [Textos Extraídos]
 (Lista de objetos Document)
-|
-v
+        |
+        v
 +------------------------------------+
-|      2. Indexação                  |
+|         2. Indexação             |
 |------------------------------------|
 | a. Chunking (Divisão de Texto)     |
 |    (RecursiveCharacterTextSplitter)|
 | b. Embedding (Vetorização)         |
-|    (sentence-transformers/         |
+|    (sentence-transformers/        |
 |     all-MiniLM-L6-v2)              |
 | c. Armazenamento Vetorial (Índice) |
 |    (FAISS)                         |
 +------------------------------------+
-|
-v
+        |
+        v
 [Banco Vetorial FAISS]
 (Retriever)
-|
-v
+        |
+        v
 +------------------------------------+
 |   3. Recuperação e Geração (RAG)   |
 |------------------------------------|
@@ -54,8 +53,8 @@ v
 | d. Geração de Resposta com LLM     |
 |    (Groq API - Llama 3)            |
 +------------------------------------+
-|
-v
+        |
+        v
 [Resposta Final]
 
 ## Detalhamento dos Componentes
